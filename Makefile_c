@@ -1,0 +1,54 @@
+.SUFFIXES:.c.o
+# Compiler Related Info
+# Compiler
+CC = gcc
+# Compiler flags
+CFLAGS = -g -Wall -Werror
+# Libraries needing linked
+LIBS = -lpthread
+
+# Directory Related Info
+# Source file directory
+SRC_DIR = src
+# Object file directory
+OBJ_DIR = obj
+# Header file directory or additional libraries
+INC_DIR = src/include
+
+# Executable Related Info
+# Executable's name
+EXEC = BackItUp.exe
+# C Source files, grabs all files matching the condition
+SRC := $(wildcard $(SRC_DIR)/*.c)
+# Creates C object files names from source file names
+OBJECTS := $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+
+
+# Rule to start compliation of executable and source files
+make: $(EXEC)
+
+# Rule to link the object files and libraries into the executable. Alerts user if successful
+$(EXEC): $(OBJECTS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
+	@echo "Executable linked successfully"
+
+.SECONDEXPANSION:
+
+# Create object file directory if missing, then process each object file. Alerts user if successful
+$(OBJECTS): $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | $$(@D)/
+	$(CC) $(CFLAGS) -c $< -o $@
+	@echo "Compiled "$<" successfully\n"
+
+# Rule to create object file directory if missing
+$(OBJ_DIR)/:
+	mkdir -p $(OBJ_DIR)
+
+
+# Rule to run executable
+run: $(EXEC)
+	./$(EXEC)
+
+# Rule to clean project folder to initial state
+clean:
+	rm -rf $(OBJ_DIR)
+	rm -f $(EXEC)
