@@ -3,7 +3,7 @@
 # Compiler
 CC = g++
 # Compiler flags
-CFLAGS =
+CFLAGS = -g -Wall -Werror
 # Libraries needing linked
 LIBS =
 
@@ -17,7 +17,7 @@ INC_DIR = src/include
 
 # Executable Related Info
 # Executable's name
-EXEC =
+EXEC = Hello.exe
 # C Source files, grabs all files matching the condition
 SRC := $(wildcard $(SRC_DIR)/*.cpp)
 # Creates C object files names from source file names

@@ -2,7 +2,7 @@
 
 int main()
 {
-	std::cout << "Enter an integer: ";
+	std::cout << "Hello World\n";
 
 	return 0;
 }

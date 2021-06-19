@@ -5,7 +5,7 @@ CC = gcc
 # Compiler flags
 CFLAGS = -g -Wall -Werror
 # Libraries needing linked
-LIBS = -lpthread
+LIBS =
 
 # Directory Related Info
 # Source file directory
@@ -17,7 +17,7 @@ INC_DIR = src/include
 
 # Executable Related Info
 # Executable's name
-EXEC = BackItUp.exe
+EXEC = Hello.exe
 # C Source files, grabs all files matching the condition
 SRC := $(wildcard $(SRC_DIR)/*.c)
 # Creates C object files names from source file names
